@@ -1,0 +1,29 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  flex-wrap: wrap;
+  background-color: #282c34;
+  min-height: 100vh;
+  padding: 1em;
+  align-items: center;
+  font-size: calc(5px + 2vmin);
+  color: white;
+}
+
+.footer {
+background-color: wheat;
+}
+
+.body-recipe {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+img {
+  margin-top: 3px;
+  border-radius: 50%;
+  width: 50vw;
+}
