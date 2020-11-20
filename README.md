@@ -22,4 +22,4 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## Contact Developer
 
-You can contact me in Linkedin [Klevis Xhyra Linkedin](https://www.linkedin.com/in/klevis-xhyra/).
+You can contact me in Linkedin [Klevis Xhyra](https://www.linkedin.com/in/klevis-xhyra/).
