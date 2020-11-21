@@ -24,6 +24,7 @@ const App = () => {
     useEffect(() => {
         getRecipes();
         console.log("effect has been run");
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [query])
     
       console.log(recipes);
