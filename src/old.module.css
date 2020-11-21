@@ -18,13 +18,13 @@ input:hover {
 
 button {
     color: #282c34;
-    width: 8rem;
+    width: 5rem;
     border-radius: 15px;
     margin-top: 1rem;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
     outline: none;
-    font-size: 16px;
+    font-size: 18px;
     background:#ffffff;
     border: none;
     padding: 0.5rem;
