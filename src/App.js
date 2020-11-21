@@ -1,70 +1,117 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from "react";
+import './App.css';
+import BarStyling from './old.module.css';
 import Recipe from './Recipe.js';
-import BarStyling from './search-bar.module.css';
-import ThemeStyle from "./dark.module.css";
-import AppStyle from "./app.module.css";
+import Footer from './Footer.js';
 
+import './styles.css';
 
 const App = () => {
 
-  const APP_ID = "1ba17caa";
-  const APP_KEY = "54011f1a74ecf1bdf523405a0d100715";
+    const APP_ID = "1ba17caa";
+    const APP_KEY = "54011f1a74ecf1bdf523405a0d100715";
 
-  const [isDark, setDark] = useState(false);
-  const [recipes, setRecipes] = useState([]);
-  const [search, setSearch] = useState([]);
-  const [query, setQuery] = useState("chicken");
+    const [recipes, setRecipes] = useState([]);
+    const [search, setSearch] = useState([]);
+    const [query, setQuery] = useState("chicken");
 
-  const changeDark = () => {
-    setDark(!isDark);
-    console.log("is Dark? " + !isDark);
+    const getRecipes = async () => {
+        const response = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=12`);
+        const data = await response.json();
+        setRecipes(data.hits);
+    }
+
+    useEffect(() => {
+        getRecipes();
+        console.log("effect has been run");
+      }, [query])
+    
+      console.log(recipes);
+
+      const updateSearch = e => {
+        setSearch(e.target.value);
+        console.log(search);
+      }
+    
+      const getQuery = e => {
+        e.preventDefault();
+        setQuery(search);
+      }
+
+      const [darkMode, setDarkMode] = React.useState(getInitialMode());
+  React.useEffect(() => {
+    localStorage.setItem("dark", JSON.stringify(darkMode));
+  }, [darkMode]);
+
+  function getInitialMode() {
+    const isReturningUser = "dark" in localStorage;
+    const savedMode = JSON.parse(localStorage.getItem("dark"));
+    const userPrefersDark = getPrefColorScheme();
+
+    if (isReturningUser) {
+      return savedMode;
+    } else if (userPrefersDark) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
-  const getRecipes = async () => {
-    const response = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=9`);
-    const data = await response.json();
-    setRecipes(data.hits);
-    console.log(recipes);
-  }
+  function getPrefColorScheme() {
+    if (!window.matchMedia) return;
 
-  const updateSearch = e => {
-    setSearch(e.target.value);
-    console.log(search);
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
   }
+    return(
+        <div className={darkMode ? "dark-mode" : "light-mode"}>
+            <div className="navigationContainer">
+            
+            
+            <div>
+                <h1>receta reactive</h1>
+            </div>
+            <div>
+                <form style={BarStyling} onSubmit={getQuery}>
+                    <button type="button" className={BarStyling.themeButton} >😋</button>
+                    <input type="text" style={BarStyling} value={search} onChange={updateSearch}/>
+                    <button type="submit" className="search-button">Kërko</button>
+                </form>
+            </div>
+            <nav>
+        <div className="toggle-container">
+          <span style={{ color: darkMode ? "grey" : "yellow" }}>☀︎</span>
+          <span className="toggle">
+            <input
+              checked={darkMode}
+              onChange={() => setDarkMode(prevMode => !prevMode)}
+              id="checkbox"
+              className="checkbox"
+              type="checkbox"
+            />
+            <label htmlFor="checkbox" />
+          </span>
+          <span style={{ color: darkMode ? "slateblue" : "grey" }}>☾</span>
+        </div>
+      </nav>
+        </div>
 
-  const getQuery = e => {
-    e.preventDefault();
-    setQuery(search);
-  }
-
-  useEffect(() => {
-    getRecipes();
-    console.log("effect has been run");
-  }, [query])
-  
-  return (
-    <div className={isDark ? AppStyle.App : ThemeStyle.App}>
-      <header>
-        <h1>recipe4u</h1>
-        <form style={BarStyling} onSubmit={getQuery}>
-          <input type="text" style={BarStyling} value={search} onChange={updateSearch} />
-          <button type="submit" className="search-button">Search</button>
-        </form>
-        <button style={BarStyling} onClick={() => {
-          changeDark();
-        }}>💡</button>
-      </header>
-      <body className="body-recipe">
-      {recipes.map(recipe => (
-        <Recipe key = {recipe.url} link={recipe.recipe.url} title={recipe.recipe.label} image={recipe.recipe.image} calories={recipe.recipe.dietLabels}/>
-      ))}
-      </body>
-      <footer>
-        <p>🍴 ha qyl 😋</p>
-      </footer>
-    </div>
-  );
+            <div className="recipeContainer">
+                {recipes.map(recipe => (
+                    <Recipe 
+                        link={recipe.recipe.url}
+                        img={recipe.recipe.image}
+                        name={recipe.recipe.label}
+                        label={recipe.recipe.dietLabels[0]}
+                    />
+                ))}
+            </div>
+            
+            <Footer />
+        </div>
+    )
 }
 
+
+
 export default App;
+

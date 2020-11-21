@@ -1,0 +1,110 @@
+.recipeContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.sampleRecipe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-around;
+    width: 24vw;
+    height: 55vh;
+    border-radius: 15px;
+    box-shadow: 0px 0px 0px rgb(255, 255, 255), 0 0 12px #84898f, 0 0 3px snow;
+
+}
+
+.sampleRecipe:hover {
+    box-shadow: 0px 0px 0px rgb(255, 255, 255), 0 0 12px #84898f, 0 0 3px snow;
+    transition-duration: 0.3s;
+
+}
+
+.sampleRecipe img{
+    width: 60%;
+    border-radius: 100%;
+}
+
+.navigationContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-around;
+
+    border-radius: 15px;
+
+    margin-bottom: 0.5rem;
+
+}
+
+.footerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1b2938;
+    color: whitesmoke;
+    border-radius: 15px;
+}
+
+
+@media screen and (max-width: 1024px) {
+    .sampleRecipe {
+        width: 30vw;
+        height: 45vh;
+        margin-bottom: 1rem;
+        border-radius: 15px;
+    }
+    .sampleRecipe img{
+        width: 50%;
+        border-radius: 100%;
+    }
+
+    .sampleRecipe:hover {
+        box-shadow: 0px 0px 0px rgb(255, 255, 255), 0 0 12px #84898f, 0 0 3px snow;
+        transition-duration: 0.3s;
+    
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    .sampleRecipe {
+        width: 40vw;
+        height: 45vh;
+        margin-bottom: 1rem;
+        border-radius: 15px;
+    }
+    .sampleRecipe img{
+        width: 50%;
+        border-radius: 100%;
+    }
+    .sampleRecipe:hover {
+        box-shadow: 0px 0px 0px rgb(255, 255, 255), 0 0 12px #84898f, 0 0 3px snow;
+        transition-duration: 0.3s;
+    
+    }
+  }
+
+@media screen and (max-width: 500px) {
+    .sampleRecipe {
+        width: 85vw;
+        height: 55vh;
+        margin-bottom: 1rem;
+        border-radius: 15px;
+    }
+    .sampleRecipe img{
+        width: 70%;
+        border-radius: 100%;
+    }
+    .sampleRecipe:hover {
+        box-shadow: 0px 0px 0px rgb(255, 255, 255), 0 0 12px #84898f, 0 0 3px snow;
+        transition-duration: 0.3s;
+    
+    }
+  }

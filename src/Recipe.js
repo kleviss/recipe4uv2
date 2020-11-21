@@ -1,20 +1,23 @@
 import React from "react";
-import style from "./recipe.module.css";
+import './App.css';
 
-const Recipe = ({title, image, calories, link}) => {
+const Recipe = ({name, label, img, link}) => {
     return(
-        <div className={style.recipe}>
-            <img src={image} alt={title}/>
-            <h1>{title}</h1>
-            <p>Label: <b>{calories}</b></p>
+        <div className="sampleRecipe">
+            <p><strong>{name}</strong></p>
+            <img 
+                alt={link}
+                src={img}
+            />
+             <p><strong>Label: </strong>{label}</p>
             <a
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
             >
-                See recipe
+            go to recipe
             </a>
-            <p style={{color: "white"}}>+</p>
+            
         </div>
     )
 }
