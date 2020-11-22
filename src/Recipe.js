@@ -9,7 +9,8 @@ const Recipe = ({name, label, img, link}) => {
                 alt={link}
                 src={img}
             />
-             <p><strong>Label: </strong>{label}</p>
+            {console.log(label)}
+             <p><strong>Label: </strong>{ !label ? "No Label" : label }</p>
             <a
                 href={link}
                 target="_blank"
