@@ -8,8 +8,8 @@ import './styles.css';
 
 const App = () => {
 
-    const APP_ID = "1ba17caa";
-    const APP_KEY = "54011f1a74ecf1bdf523405a0d100715";
+    const APP_ID = process.env.REACT_APP_APP_ID;
+    const APP_KEY = process.env.REACT_APP_APP_KEY;
 
     const [recipes, setRecipes] = useState([]);
     const [search, setSearch] = useState([]);
