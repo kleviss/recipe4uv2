@@ -8,8 +8,11 @@ import './styles.css';
 
 const App = () => {
 
-    const APP_ID = process.env.REACT_APP_APP_ID;
-    const APP_KEY = process.env.REACT_APP_APP_KEY;
+    // const APP_ID = process.env.REACT_APP_APP_ID;
+    // const APP_KEY = process.env.REACT_APP_APP_KEY;
+
+    const APP_ID = '1ba17caa';
+    const APP_KEY = '54011f1a74ecf1bdf523405a0d100715';
 
     const [recipes, setRecipes] = useState([]);
     const [search, setSearch] = useState([]);
@@ -40,34 +43,31 @@ const App = () => {
       }
 
       const [darkMode, setDarkMode] = React.useState(getInitialMode());
-  React.useEffect(() => {
-    localStorage.setItem("dark", JSON.stringify(darkMode));
-  }, [darkMode]);
+      React.useEffect(() => {
+        localStorage.setItem("dark", JSON.stringify(darkMode));
+      }, [darkMode]);
 
-  function getInitialMode() {
-    const isReturningUser = "dark" in localStorage;
-    const savedMode = JSON.parse(localStorage.getItem("dark"));
-    const userPrefersDark = getPrefColorScheme();
+      const getInitialMode = () => {
+        const isReturningUser = "dark" in localStorage;
+        const savedMode = JSON.parse(localStorage.getItem("dark"));
+        const userPrefersDark = getPrefColorScheme();
 
-    if (isReturningUser) {
-      return savedMode;
-    } else if (userPrefersDark) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+        if (isReturningUser) {
+          return savedMode;
+        } else if (userPrefersDark) {
+          return true;
+        } else {
+          return false;
+        }
+      }
 
-  function getPrefColorScheme() {
-    if (!window.matchMedia) return;
-
-    return window.matchMedia("(prefers-color-scheme: dark)").matches;
-  }
-    return(
+      function getPrefColorScheme() {
+        if (!window.matchMedia) return;
+        return window.matchMedia("(prefers-color-scheme: dark)").matches;
+      }
+      return(
         <div className={darkMode ? "dark-mode" : "light-mode"}>
             <div className="navigationContainer">
-            
-            
             <div>
                 <h1>receta reactive</h1>
             </div>
@@ -78,24 +78,23 @@ const App = () => {
                     <button type="submit" className="search-button">Kërko</button>
                 </form>
             </div>
-            <nav>
-        <div className="toggle-container">
-          <span style={{ color: darkMode ? "grey" : "yellow" }}>☀︎</span>
-          <span className="toggle">
-            <input
-              checked={darkMode}
-              onChange={() => setDarkMode(prevMode => !prevMode)}
-              id="checkbox"
-              className="checkbox"
-              type="checkbox"
-            />
-            <label htmlFor="checkbox" />
-          </span>
-          <span style={{ color: darkMode ? "slateblue" : "grey" }}>☾</span>
-        </div>
-      </nav>
-        </div>
-
+              <nav>
+                <div className="toggle-container">
+                  <span style={{ color: darkMode ? "grey" : "yellow" }}>☀︎</span>
+                  <span className="toggle">
+                    <input
+                      checked={darkMode}
+                      onChange={() => setDarkMode(prevMode => !prevMode)}
+                      id="checkbox"
+                      className="checkbox"
+                      type="checkbox"
+                    />
+                    <label htmlFor="checkbox" />
+                  </span>
+                  <span style={{ color: darkMode ? "slateblue" : "grey" }}>☾</span>
+                </div>
+              </nav>
+            </div>
             <div className="recipeContainer">
                 {recipes.map(recipe => (
                     <Recipe 
@@ -106,13 +105,9 @@ const App = () => {
                     />
                 ))}
             </div>
-            
             <Footer />
         </div>
     )
 }
 
-
-
 export default App;
-
