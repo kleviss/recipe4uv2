@@ -4,7 +4,6 @@ import './App.css'
 const Navigation = () => {
     return(
         <div div className="navigationContainer">
-            
             <div>
                 <h1>receta reactive</h1>
             </div>

@@ -17,9 +17,10 @@ const App = () => {
     const [recipes, setRecipes] = useState([]);
     const [search, setSearch] = useState([]);
     const [query, setQuery] = useState("chicken");
+    const [quantity, setQuantity] = useState(["9"]);
 
     const getRecipes = async () => {
-        const response = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=12`);
+        const response = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=${quantity.toString()}`);
         const data = await response.json();
         setRecipes(data.hits);
     }
@@ -28,9 +29,10 @@ const App = () => {
         getRecipes();
         console.log("effect has been run");
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, [query])
+      }, [query, quantity])
     
       console.log(recipes);
+      console.log(quantity);
 
       const updateSearch = e => {
         setSearch(e.target.value);
@@ -41,11 +43,6 @@ const App = () => {
         e.preventDefault();
         setQuery(search);
       }
-
-      const [darkMode, setDarkMode] = React.useState(getInitialMode());
-      React.useEffect(() => {
-        localStorage.setItem("dark", JSON.stringify(darkMode));
-      }, [darkMode]);
 
       const getInitialMode = () => {
         const isReturningUser = "dark" in localStorage;
@@ -61,6 +58,11 @@ const App = () => {
         }
       }
 
+      const [darkMode, setDarkMode] = React.useState(getInitialMode());
+      React.useEffect(() => {
+        localStorage.setItem("dark", JSON.stringify(darkMode));
+      }, [darkMode]);
+      
       function getPrefColorScheme() {
         if (!window.matchMedia) return;
         return window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -105,6 +107,7 @@ const App = () => {
                     />
                 ))}
             </div>
+            <div className="loadmore-div"><button type="submit" className="load-more-button" onClick={() => {setQuantity(parseInt(quantity) + 9);}}>🔽 Më shumë receta 🔽</button></div>
             <Footer />
         </div>
     )
