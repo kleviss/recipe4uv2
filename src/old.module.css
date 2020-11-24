@@ -1,4 +1,4 @@
-input {
+/* input {
     width: 15rem;
     border-radius: 15px;
     outline: none;
@@ -14,7 +14,7 @@ input:hover {
     font-weight: bolder;
     box-shadow: 0px 0px 0px rgb(255, 255, 255), 0 0 12px #84898f, 0 0 3px snow;
     transition-duration: 0.3s;
-}
+} */
 
 button {
     color: #282c34;
