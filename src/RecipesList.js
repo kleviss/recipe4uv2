@@ -33,13 +33,13 @@ const RecipeList = () => {
   return (
     <div className="recipeContainer">
       {recipes.map((recipe) => (
-        <Link to={`/recipes/${recipe.recipe.calories}`}>
+        <Link key={recipe.recipe.label} to={`/recipes/${recipe.recipe.label}`}>
           <Recipe
             title={recipe.recipe.label}
             image={recipe.recipe.image}
             label={recipe.recipe.dietLabels[0]}
             link={recipe.recipe.url}
-            key={recipe.recipe.uri}
+            key={recipe.recipe.label}
           />
         </Link>
       ))}

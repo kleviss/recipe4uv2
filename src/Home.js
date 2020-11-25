@@ -1,12 +1,12 @@
 import React from "react";
-import DeleteIcon from "@material-ui/core/Typography";
+// import HomeIcon from "@material-ui/core/HomeIcon";
 import "./App.css";
 
 const Home = () => {
   return (
     <h1 className="ab">
       Home
-      <DeleteIcon />
+      {/* <HomeIcon style={{ fontSize: 40 }} /> */}
     </h1>
   );
 };

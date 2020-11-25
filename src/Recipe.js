@@ -12,9 +12,9 @@ const Recipe = ({ title, image, label, link }) => {
         <strong>Label: </strong>
         {!label ? "No Label" : label}
       </p>
-      <a href={link} target="_blank" rel="noopener noreferrer">
-        go to recipe
-      </a>
+      <p>
+        <a href={link}>Go to recipe</a>
+      </p>
     </div>
   );
 };

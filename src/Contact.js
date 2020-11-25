@@ -1,26 +1,15 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& > *": {
-      margin: theme.spacing(1),
-      width: "25ch",
-    },
-  },
-}));
-
-export default function Contact() {
-  const classes = useStyles();
-
+const Contact = () => {
   return (
     <div className="ab">
-      <form className={classes.root} noValidate autoComplete="off">
-        <TextField id="standard-basic" label="Standard" />
-        <TextField id="filled-basic" label="Filled" variant="filled" />
-        <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-      </form>
+      <h1>Contact us</h1>
+      <Button variant="contained" color="secondary">
+        Hello World
+      </Button>
     </div>
   );
-}
+};
+
+export default Contact;
